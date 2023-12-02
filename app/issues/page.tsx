@@ -29,10 +29,10 @@ const IssuesPage = async () => {
             <Table.Row key={item.id}>
               <Table.Cell>
                 {item.title}
-                <div className="block md:hidden">{item.Status}</div>
+                <div className="block md:hidden">{item.status}</div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {item.Status}
+                {item.status}
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
                 {item.createdAt.toDateString()}
