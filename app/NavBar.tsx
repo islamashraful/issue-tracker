@@ -4,11 +4,18 @@ import Link from "next/link";
 import { AiFillBug } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
-import { Box, Container, Flex } from "@radix-ui/themes";
+import {
+  Avatar,
+  Box,
+  Container,
+  DropdownMenu,
+  Flex,
+  Text,
+} from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 
 const NavBar = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
   const links = [
     {
       title: "Dashboard",
@@ -52,7 +59,25 @@ const NavBar = () => {
               <Link href="/api/auth/signin">Login</Link>
             )}
             {status === "authenticated" && (
-              <Link href="/api/auth/signout">Log out</Link>
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger>
+                  <Avatar
+                    src={data.user?.image || undefined}
+                    fallback="?"
+                    radius="full"
+                    size="2"
+                    className="cursor-pointer"
+                  />
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                  <DropdownMenu.Label>
+                    <Text size="2">{data.user?.email}</Text>
+                  </DropdownMenu.Label>
+                  <DropdownMenu.Item>
+                    <Link href="/api/auth/signout">Log out</Link>
+                  </DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
             )}
           </Box>
         </Flex>
@@ -60,5 +85,7 @@ const NavBar = () => {
     </nav>
   );
 };
+{
+}
 
 export default NavBar;
