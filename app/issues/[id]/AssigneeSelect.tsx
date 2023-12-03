@@ -31,17 +31,19 @@ const AssigneeSelect = ({
     return null;
   }
 
+  const handleAssignIssue = (val: string) => {
+    axios
+      .patch("/api/issues/" + id, {
+        assignedToUserId: val || null,
+      })
+      .catch(() => toast.error("Changes could not be saved."));
+  };
+
   return (
     <>
       <Select.Root
         defaultValue={assignedToUserId || ""}
-        onValueChange={(val) => {
-          axios
-            .patch("/api/issues/" + id, {
-              assignedToUserId: val || null,
-            })
-            .catch(() => toast.error("Changes could not be saved."));
-        }}
+        onValueChange={handleAssignIssue}
       >
         <Select.Trigger placeholder="Assign..." />
         <Select.Content>
