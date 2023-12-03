@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Skeleton } from "@/app/components";
 import { AiFillBug } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
@@ -69,7 +70,7 @@ const AuthStatus = () => {
   const { status, data } = useSession();
 
   if (status === "loading") {
-    return null;
+    return <Skeleton width="3rem" />;
   }
 
   if (status === "unauthenticated") {
