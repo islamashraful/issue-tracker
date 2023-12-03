@@ -13,7 +13,7 @@ const NavBar = () => {
     },
     {
       title: "Issues",
-      href: "/issues",
+      href: "/issues/list",
     },
   ];
 
