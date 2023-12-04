@@ -1,3 +1,7 @@
-export default function Home() {
-  return <p>Lets do it! 🚀</p>;
-}
+import LatestIssues from "./LatestIssues";
+
+const Home = async () => {
+  return <LatestIssues />;
+};
+
+export default Home;
