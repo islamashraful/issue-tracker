@@ -6,6 +6,7 @@ import IssuesAction from "./IssuesAction";
 import { Issue, Status } from "@prisma/client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import IssuesTable, { ISSUE_COLUMNS } from "./IssuesTable";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: {
@@ -54,5 +55,10 @@ const IssuesPage = async ({ searchParams }: Props) => {
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Issue List",
+  description: "View all project issues",
+};
 
 export default IssuesPage;
